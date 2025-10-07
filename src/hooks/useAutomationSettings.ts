@@ -9,6 +9,7 @@ export type AutomationSetting = {
   stage_name: string;
   responsible_user_id: string | null;
   dispatcher_id: string | null;
+  dispatcher_percentage: number;
   task_title_template: string;
   task_description_template: string;
   payment_amount: number;
@@ -44,6 +45,7 @@ export const useAutomationSettings = () => {
           .update({
             responsible_user_id: setting.responsible_user_id,
             dispatcher_id: setting.dispatcher_id,
+            dispatcher_percentage: setting.dispatcher_percentage,
             task_title_template: setting.task_title_template,
             task_description_template: setting.task_description_template,
             payment_amount: setting.payment_amount,

@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           created_at: string
           dispatcher_id: string | null
+          dispatcher_percentage: number | null
           duration_days: number | null
           id: string
           payment_amount: number | null
@@ -31,6 +32,7 @@ export type Database = {
         Insert: {
           created_at?: string
           dispatcher_id?: string | null
+          dispatcher_percentage?: number | null
           duration_days?: number | null
           id?: string
           payment_amount?: number | null
@@ -44,6 +46,7 @@ export type Database = {
         Update: {
           created_at?: string
           dispatcher_id?: string | null
+          dispatcher_percentage?: number | null
           duration_days?: number | null
           id?: string
           payment_amount?: number | null

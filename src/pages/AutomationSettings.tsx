@@ -152,6 +152,12 @@ const AutomationSettings = () => {
                         <span>Диспетчер</span>
                       </div>
                     </th>
+                    <th className="text-left p-4 font-semibold text-foreground">
+                      <div className="flex items-center space-x-1">
+                        <DollarSign className="w-4 h-4" />
+                        <span>% Диспетчера</span>
+                      </div>
+                    </th>
                     <th className="text-left p-4 font-semibold text-foreground">Название задачи</th>
                     <th className="text-left p-4 font-semibold text-foreground">Описание</th>
                     <th className="text-left p-4 font-semibold text-foreground">
@@ -240,6 +246,25 @@ const AutomationSettings = () => {
                               ? users.find(u => u.uuid_user === setting.dispatcher_id)?.full_name || 'Пользователь не найден'
                               : 'Не назначен'
                             }
+                          </div>
+                        )}
+                      </td>
+                      <td className="p-4">
+                        {isEditing ? (
+                          <Input
+                            type="number"
+                            min="0"
+                            max="100"
+                            value={setting.dispatcher_percentage}
+                            onChange={(e) => 
+                              updateLocalSetting(index, 'dispatcher_percentage', Number(e.target.value))
+                            }
+                            placeholder="0"
+                            className="w-20"
+                          />
+                        ) : (
+                          <div className="text-sm text-foreground font-medium">
+                            {setting.dispatcher_percentage}%
                           </div>
                         )}
                       </td>
