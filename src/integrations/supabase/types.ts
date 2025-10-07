@@ -17,6 +17,7 @@ export type Database = {
       automation_settings: {
         Row: {
           created_at: string
+          dispatcher_id: string | null
           duration_days: number | null
           id: string
           payment_amount: number | null
@@ -29,6 +30,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          dispatcher_id?: string | null
           duration_days?: number | null
           id?: string
           payment_amount?: number | null
@@ -41,6 +43,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          dispatcher_id?: string | null
           duration_days?: number | null
           id?: string
           payment_amount?: number | null

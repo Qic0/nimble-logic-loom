@@ -146,6 +146,12 @@ const AutomationSettings = () => {
                         <span>Ответственный</span>
                       </div>
                     </th>
+                    <th className="text-left p-4 font-semibold text-foreground">
+                      <div className="flex items-center space-x-1">
+                        <Users className="w-4 h-4" />
+                        <span>Диспетчер</span>
+                      </div>
+                    </th>
                     <th className="text-left p-4 font-semibold text-foreground">Название задачи</th>
                     <th className="text-left p-4 font-semibold text-foreground">Описание</th>
                     <th className="text-left p-4 font-semibold text-foreground">
@@ -203,6 +209,35 @@ const AutomationSettings = () => {
                           <div className="text-sm text-foreground">
                             {setting.responsible_user_id 
                               ? users.find(u => u.uuid_user === setting.responsible_user_id)?.full_name || 'Пользователь не найден'
+                              : 'Не назначен'
+                            }
+                          </div>
+                        )}
+                      </td>
+                      <td className="p-4">
+                        {isEditing ? (
+                          <Select
+                            value={setting.dispatcher_id || 'unassigned'}
+                            onValueChange={(value) => 
+                              updateLocalSetting(index, 'dispatcher_id', value === 'unassigned' ? null : value)
+                            }
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Выберите диспетчера" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="unassigned">Не назначен</SelectItem>
+                              {users.map((user) => (
+                                <SelectItem key={user.uuid_user} value={user.uuid_user}>
+                                  {user.full_name} ({user.role})
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        ) : (
+                          <div className="text-sm text-foreground">
+                            {setting.dispatcher_id 
+                              ? users.find(u => u.uuid_user === setting.dispatcher_id)?.full_name || 'Пользователь не найден'
                               : 'Не назначен'
                             }
                           </div>
